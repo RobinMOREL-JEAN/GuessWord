@@ -5,7 +5,7 @@
 
 
 body {
-    box-sizing: border-box;
+    box-sizing: content-box;
       
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
@@ -30,7 +30,7 @@ body {
 }
 
 table {
-    margin: 5rem;
+    margin: 1rem;
     border-collapse: collapse;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
@@ -39,8 +39,8 @@ td {
     border: 1px solid rgb(177, 177, 177);
     padding: 1rem;
     font-size: 3rem;
-    width: 5rem;
-    height: 5rem;
+    width: 4rem;
+    height: 4rem;
     text-align: center;
 }
 
