@@ -2,6 +2,7 @@ export const displayFirstLetter = (wordToFind: string) => {
     const firstTd =  document.querySelectorAll("td")[0];
     if(firstTd !== undefined && wordToFind[0]){
         firstTd.textContent = wordToFind[0];
+        firstTd.classList.add("green-letter");
     }
 }
 
