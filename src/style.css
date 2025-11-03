@@ -12,8 +12,12 @@ body {
     font-weight: 500;
     font-style: normal;
 
-background: #ffffff;
-background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 227, 209, 1) 100%);
+    background: #ffffff;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 227, 209, 1) 100%);
+
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 
 }
 
@@ -44,15 +48,10 @@ td {
     text-align: center;
 }
 
-@keyframes fadeIn {
-  from { transform: scale(0.8); }
-  to   { transform: scale(1) }
-}
-
 .green-letter, .yellow-letter, .red-letter {
     border: none;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 0.5s ease-in-out 0s;
+    animation: scaleUp 0.5s ease-in-out 0s;
 }
 
 .green-letter {
@@ -63,4 +62,31 @@ td {
 }
 .red-letter {
     background-color: #ff9393;
+}
+
+#win-menu, #defeat-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+
+    font-size: 10vw;
+    color: white;
+    display: none;
+    text-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+}
+#win-menu.show, #defeat-menu.show {
+    display: flex;
+    animation: fadIn 3s ease-in-out 0s;
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.8); }
+  to   { transform: scale(1) }
+}
+@keyframes fadIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }

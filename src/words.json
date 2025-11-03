@@ -9,10 +9,16 @@
     "CADEAU",
     "TEMPLE",
     "CHEMIN",
-    "REPERE",
     "BUREAU",
     "EXAMEN",
     "CRAYON",
-    "CIRQUE"
+    "CIRQUE",
+    "CAHIER",
+    "BERGER",
+    "MOUTON",
+    "ETABLE",
+    "BRIQUE",
+    "BREBIS",
+    "ORANGE"
   ]
 }
