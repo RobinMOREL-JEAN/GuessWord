@@ -1,6 +1,6 @@
-import { checkGoodAnswer, checkWrongAnswer } from "./answerCheck"
-import { displayFirstLetter, displayAnswer } from "./display";
-import { checkGameState } from "./gameState"
+import { displayFirstLetter} from "./display";
+import { runGame } from "./game";
+
 import wordsData from "../words.json";
 
 const wordsDictionnary = wordsData.words;
@@ -30,24 +30,7 @@ if (wordToFind !== undefined && form && input) {
             wordGuessedLetters = wordGuessedLetters.map(letter => letter.toUpperCase());
             wordGuessedLetters.splice(6);
 
-            runGame(wordGuessedLetters);
+            runGame(wordGuessedLetters, wordToFindLetters, gameState);
             form.reset();
     });
-
-    const runGame = (wordGuessedLetters: string[]) => {
-
-        if (gameState.numberOfTries < 6 && gameState.isGameGoing){
-            const cells = document.querySelectorAll(`tr#try-${gameState.numberOfTries} td`) as NodeListOf<HTMLTableCellElement>;
-            const currentLettersRemaining = [...wordToFindLetters]
-            
-            checkGoodAnswer(wordToFindLetters, wordGuessedLetters, currentLettersRemaining, cells);
-
-            checkWrongAnswer(wordToFindLetters, wordGuessedLetters, currentLettersRemaining, cells);
-
-            checkGameState(wordGuessedLetters, gameState);
-            
-        } else {
-            console.log("Game has already ended");
-        }
-    }
 }
