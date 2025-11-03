@@ -6,7 +6,7 @@ import wordsData from "../words.json";
 const wordsDictionnary = wordsData.words;
 const form = document.querySelector("form");
 const input = document.querySelector("input");
-const wordToFind = wordsDictionnary[Math.floor(Math.random() * wordsDictionnary.length)];
+export const wordToFind = wordsDictionnary[Math.floor(Math.random() * wordsDictionnary.length)];
 
 let wordGuessed = "";
 let gameState = {

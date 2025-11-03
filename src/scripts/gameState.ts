@@ -1,21 +1,26 @@
+import { displayVictoryScreen, displayDefeatScreen } from "./display";
+
+let isWordRight = false;
+
+const endGame = (gameState: { isGameGoing: boolean }, foundWord: boolean) => {
+    if(foundWord) {
+        gameState.isGameGoing = false;
+    } else {
+        gameState.isGameGoing = false;
+    }
+}
+
 export const checkGameState = (wordGuessedLetters: string[], gameState: { numberOfTries: number, isGameGoing: boolean}) => {
     gameState.numberOfTries++;
     if(wordGuessedLetters.every(color => color === "green")) {
-        winGame(gameState);
+        isWordRight = true;
+        endGame(gameState, isWordRight);
+        displayVictoryScreen();
     }
     else {
         if (gameState.numberOfTries >= 6) {
-            loseGame(gameState);
+            endGame(gameState, isWordRight);
+            displayDefeatScreen();
         }
     }
-}
-
-export const winGame = (gameState: { isGameGoing: boolean }) => {
-    document.getElementById("win-menu")?.classList.add("show");
-    gameState.isGameGoing = false;
-}
-
-export const loseGame = (gameState: { isGameGoing: boolean }) => {
-    document.getElementById("defeat-menu")?.classList.add("show");
-    gameState.isGameGoing = false;
 }
