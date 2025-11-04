@@ -22,6 +22,7 @@ export const checkGameState = (wordGuessedLetters: string[], gameState: { number
         isWordRight = true;
         endGame(gameState, isWordRight);
         displayVictoryScreen();
+        console.log("a");
     }
     else if(gameState.numberOfTries >= 6) {
             endGame(gameState, isWordRight);
