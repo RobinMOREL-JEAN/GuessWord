@@ -1,34 +1,40 @@
-import { wordToFind } from "./index";
+// import { wordToFind } from "./index";
 import { runGame } from "./game";
-let typedWord: string[] = [];
+import type { GameState } from "./types/types";
+
 
 // === Setup keyboard events ===
 
-export const typeText = (gameState: { numberOfTries: number, isGameGoing: boolean}) => {
+export const typeText = (
+    gameState: GameState,
+    wordToFind: string
+) => {
+    const typedLetters: string[] = [];
     let j = 0;
 
-    if (gameState.numberOfTries === 0) {
+    if (gameState.tries === 0) {
         j++;
-        typedWord.push(wordToFind![0]!)
+        typedLetters.push(wordToFind![0]!)
     }
 
     const typingListener = (event: KeyboardEvent) => {
-        const cellsToType = document.querySelectorAll(`tr#try-${gameState.numberOfTries} td`) as NodeListOf<HTMLTableCellElement>;
+        const cells = document.querySelectorAll(`tr#try-${gameState.tries} td`) as NodeListOf<HTMLTableCellElement>;
+
         if (/^[a-z]$/.test(event.key) && j < 6) {
-            cellsToType[j]!.textContent = event.key as string;
+            cells[j]!.textContent = event.key as string;
             j++;
-            typedWord.push(event.key);
+            typedLetters.push(event.key);
         }
         else if (event.key === "Backspace" && j > 0){
             j--;
-            cellsToType[j]!.textContent = "";
-            typedWord.pop();
+            cells[j]!.textContent = "";
+            typedLetters.pop();
         }
         else if (event.key === "Enter" && j === 6) {
             document.removeEventListener("keydown", typingListener);
             j = 0;
-            submit(gameState);
-            typedWord = [];
+            submit(gameState, typedLetters, wordToFind);
+            // typedLetters.splice(0, typedLetters.length);
         }
     }
     document.addEventListener("keydown", typingListener);
@@ -36,10 +42,14 @@ export const typeText = (gameState: { numberOfTries: number, isGameGoing: boolea
 
 // === Send submited word to the main function ===
 
-const submit = (gameState: { numberOfTries: number, isGameGoing: boolean}) => {
-            const wordToFindLetters = wordToFind!.split("");
-            let wordGuessedLetters = [...typedWord];
-            wordGuessedLetters = wordGuessedLetters.map(letter => letter.toUpperCase());
-            wordGuessedLetters.splice(6);
-            runGame(wordGuessedLetters, wordToFindLetters, gameState);    
+const submit = (
+    gameState: GameState,
+    typedLetters: string[],
+    wordToFind: string,
+) => {
+        const wordToFindLetters = wordToFind!.split("");
+        // let guessedLetters = [...typedLetters];
+        const guessedLetters = typedLetters.map(letter => letter.toUpperCase());
+        guessedLetters.splice(6);
+        runGame(guessedLetters, wordToFindLetters, gameState);
 }

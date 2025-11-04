@@ -1,34 +1,32 @@
 import { displayVictoryScreen, displayDefeatScreen } from "./display";
+import type { GameState } from "./types/types";
 import { typeText } from "./typeText";
 
-let isWordRight = false;
 
 // === End the game ===
 
-const endGame = (gameState: { isGameGoing: boolean }, foundWord: boolean) => {
-    if(foundWord) {
-        gameState.isGameGoing = false;
-    } else {
-        gameState.isGameGoing = false;
-    }
+const endGame = (gameState: GameState) => {
+    gameState.isPlaying = false;
 }
 
 
 // === Check current state of the game ===
 
-export const checkGameState = (wordGuessedLetters: string[], gameState: { numberOfTries: number, isGameGoing: boolean}) => {
-    gameState.numberOfTries++;
-    if(wordGuessedLetters.every(color => color === "green")) {
-        isWordRight = true;
-        endGame(gameState, isWordRight);
+export const checkGameState = (
+    guessedLetters: string[],
+    gameState: GameState,
+    wordToFind: string,
+) => {
+    gameState.tries++;
+    if(guessedLetters.every(color => color === "green")) {
+        endGame(gameState);
         displayVictoryScreen();
-        console.log("a");
     }
-    else if(gameState.numberOfTries >= 6) {
-            endGame(gameState, isWordRight);
-            displayDefeatScreen();
+    else if(gameState.tries >= 6) {
+        endGame(gameState);
+        displayDefeatScreen();
     }
     else {
-        typeText(gameState);
+        typeText(gameState, wordToFind);
     }
 }
