@@ -1,4 +1,5 @@
 import { displayVictoryScreen, displayDefeatScreen } from "./display";
+import { typeText } from "./typeText";
 
 let isWordRight = false;
 
@@ -12,6 +13,7 @@ const endGame = (gameState: { isGameGoing: boolean }, foundWord: boolean) => {
 
 export const checkGameState = (wordGuessedLetters: string[], gameState: { numberOfTries: number, isGameGoing: boolean}) => {
     gameState.numberOfTries++;
+    typeText(gameState);
     if(wordGuessedLetters.every(color => color === "green")) {
         isWordRight = true;
         endGame(gameState, isWordRight);
