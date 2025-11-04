@@ -1,4 +1,3 @@
-// import { wordToFind } from "./index";
 import { runGame } from "./game";
 import type { GameState } from "./types/types";
 
@@ -15,6 +14,7 @@ export const typeText = (
     if (gameState.tries === 0) {
         j++;
         typedLetters.push(wordToFind![0]!)
+        // Set the cursor after the hinted letter in first round
     }
 
     const typingListener = (event: KeyboardEvent) => {
@@ -34,7 +34,6 @@ export const typeText = (
             document.removeEventListener("keydown", typingListener);
             j = 0;
             submit(gameState, typedLetters, wordToFind);
-            // typedLetters.splice(0, typedLetters.length);
         }
     }
     document.addEventListener("keydown", typingListener);
@@ -48,7 +47,6 @@ const submit = (
     wordToFind: string,
 ) => {
         const wordToFindLetters = wordToFind!.split("");
-        // let guessedLetters = [...typedLetters];
         const guessedLetters = typedLetters.map(letter => letter.toUpperCase());
         guessedLetters.splice(6);
         runGame(guessedLetters, wordToFindLetters, gameState);

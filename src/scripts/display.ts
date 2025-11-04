@@ -9,16 +9,23 @@ export const displayFirstLetter = (wordToFind: string) => {
 
 // === Display which letters are correct after submit ===
 
-export const displayAnswer = (cells: NodeListOf<HTMLTableCellElement>, i: number, wordGuessedLetters: string[], checkValue: number) => {
+export const displayAnswer = (
+    cells: NodeListOf<HTMLTableCellElement>,
+    i: number,
+    wordGuessedLetters: string[],
+    checkValue: number,
+) => {
     cells[i]!.textContent = wordGuessedLetters[i]!;
-    if(checkValue === 0) {
-        cells[i]!.classList.add("green-letter");
-    }
-    else if (checkValue === 1) {
-        cells[i]!.classList.add("yellow-letter");
-    }
-    else {
-        cells[i]!.classList.add("red-letter");
+    switch (checkValue) {
+        case 0:
+            cells[i]!.classList.add("green-letter");
+            break;
+        case 1:
+            cells[i]!.classList.add("yellow-letter");
+            break;
+        default:
+            cells[i]!.classList.add("red-letter");
+            break
     }
 }
 

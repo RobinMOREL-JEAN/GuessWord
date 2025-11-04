@@ -1,6 +1,12 @@
 import { displayAnswer } from "./display"
 
-export const checkGoodAnswer = (wordToFindLetters: string[], wordGuessedLetters: string[], currentLettersRemaining: string[], cells: NodeListOf<HTMLTableCellElement>) => {
+export const checkGoodAnswer = (
+    wordToFindLetters: string[],
+    wordGuessedLetters: string[],
+    currentLettersRemaining: string[],
+    cells: NodeListOf<HTMLTableCellElement>,
+
+) => {
     for (let i = 0; i < wordToFindLetters.length; i++) { 
         if(wordGuessedLetters[i] === currentLettersRemaining[i]) { 
             displayAnswer(cells, i, wordGuessedLetters, 0);
@@ -11,7 +17,13 @@ export const checkGoodAnswer = (wordToFindLetters: string[], wordGuessedLetters:
     }
 }
 
-export const checkWrongAnswer = (wordToFindLetters: string[], wordGuessedLetters: string[], currentLettersRemaining: string[], cells: NodeListOf<HTMLTableCellElement>) => {
+export const checkWrongAnswer = (
+    wordToFindLetters: string[],
+    wordGuessedLetters: string[],
+    currentLettersRemaining: string[],
+    cells: NodeListOf<HTMLTableCellElement>,
+
+) => {
     for (let i = 0; i < wordToFindLetters.length; i++) {
         const guessed = wordGuessedLetters[i];
         if (guessed) {
