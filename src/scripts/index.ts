@@ -1,20 +1,16 @@
 import { displayFirstLetter} from "./display";
 import { typeText } from "./typeText"
 import wordsData from "../words.json";
+import type { GameState } from "./types/gameState.type";
 
-const wordsDictionnary = wordsData.words;
-export const wordToFind = wordsDictionnary[Math.floor(Math.random() * wordsDictionnary.length)];
-
-let wordGuessed = "";
-let gameState = {
-    numberOfTries: 0,
-    isGameGoing: true,
+const gameState: GameState = {
+    tries: 0,
+    isPlaying: true,
 };
+const { words } = wordsData;
+const wordToFind = words[Math.floor(Math.random() * words.length)];
 
-typeText(gameState);
+if (!wordToFind) throw new Error('No word found in the words list.');
 
-if (wordToFind !== undefined) {
-    displayFirstLetter(wordToFind);
-}
-
-console.log(wordToFind);
+typeText(gameState, wordToFind);
+displayFirstLetter(wordToFind);
