@@ -3,6 +3,8 @@ import { typeText } from "./typeText";
 
 let isWordRight = false;
 
+// === End the game ===
+
 const endGame = (gameState: { isGameGoing: boolean }, foundWord: boolean) => {
     if(foundWord) {
         gameState.isGameGoing = false;
@@ -10,6 +12,9 @@ const endGame = (gameState: { isGameGoing: boolean }, foundWord: boolean) => {
         gameState.isGameGoing = false;
     }
 }
+
+
+// === Check current state of the game ===
 
 export const checkGameState = (wordGuessedLetters: string[], gameState: { numberOfTries: number, isGameGoing: boolean}) => {
     gameState.numberOfTries++;

@@ -1,6 +1,8 @@
 import { checkGameState } from "./gameState"
 import { checkGoodAnswer, checkWrongAnswer } from "./answerCheck"
 
+// === Run every major function of the game
+
 export const runGame = (wordGuessedLetters: string[], wordToFindLetters: string[], gameState: { numberOfTries: number, isGameGoing: boolean}) => {
 
     if (gameState.numberOfTries < 6 && gameState.isGameGoing){

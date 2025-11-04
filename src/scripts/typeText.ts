@@ -4,11 +4,12 @@ let typedWord: string[] = [];
 
 export const typeText = (gameState: { numberOfTries: number, isGameGoing: boolean}) => {
     let j = 0;
+    const wordToFindLetters = wordToFind!.split("");
+    
     if (gameState.numberOfTries === 0) {
         j++;
         typedWord.push(wordToFind![0]!)
     }
-    const wordToFindLetters = wordToFind!.split("");
 
     const typingListener = (event: KeyboardEvent) => {
         const cellsToType = document.querySelectorAll(`tr#try-${gameState.numberOfTries} td`) as NodeListOf<HTMLTableCellElement>;
@@ -17,7 +18,6 @@ export const typeText = (gameState: { numberOfTries: number, isGameGoing: boolea
             j++;
             
             typedWord.push(event.key);
-            console.log(typedWord);
         }
         else if (event.key === "Backspace" && j > 0){
             j--;
@@ -36,5 +36,9 @@ export const typeText = (gameState: { numberOfTries: number, isGameGoing: boolea
     }
 
     document.addEventListener("keydown", typingListener);
+    
+}
+
+const submit = () => {
     
 }
