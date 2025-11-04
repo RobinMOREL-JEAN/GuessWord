@@ -20,7 +20,7 @@ export const typeText = (
     const typingListener = (event: KeyboardEvent) => {
         const cells = document.querySelectorAll(`tr#try-${gameState.tries} td`) as NodeListOf<HTMLTableCellElement>;
 
-        if (/^[a-z]$/.test(event.key) && j < 6) {
+        if (/^[a-zA-Z]$/.test(event.key) && j < 6) {
             cells[j]!.textContent = event.key as string;
             j++;
             typedLetters.push(event.key);
